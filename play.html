@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashborn — Coming Soon</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Orbitron:wght@500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 30%, #1a0e0e 0%, #000 80%);
+      color: #f4f4f4;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Floating ember particles */
+    .ember {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 60, 0, 0.8);
+      border-radius: 50%;
+      animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.3);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ff3c00, #ff6309);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: flicker 3s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      45% { opacity: 0.85; }
+      50% { opacity: 0.6; text-shadow: 0 0 12px #ff3c00; }
+      55% { opacity: 1; }
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 1.3rem;
+      opacity: 0.8;
+      color: #cfcfcf;
+    }
+
+    .glitch {
+      position: relative;
+      display: inline-block;
+      font-size: 1.1rem;
+      color: #ff3c00;
+      margin-top: 30px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px #ff3c00;
+    }
+
+    .glitch::before, .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .glitch::before {
+      animation: glitchTop 2s infinite linear alternate-reverse;
+      color: #c020ff;
+    }
+
+    .glitch::after {
+      animation: glitchBottom 2.5s infinite linear alternate-reverse;
+      color: #ff3c00;
+    }
+
+    @keyframes glitchTop {
+      0% { clip-path: inset(0 0 95% 0); }
+      50% { clip-path: inset(0 0 40% 0); transform: translate(2px, -1px); }
+      100% { clip-path: inset(0 0 95% 0); }
+    }
+
+    @keyframes glitchBottom {
+      0% { clip-path: inset(90% 0 0 0); }
+      50% { clip-path: inset(50% 0 0 0); transform: translate(-2px, 1px); }
+      100% { clip-path: inset(90% 0 0 0); }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9rem;
+      opacity: 0.5;
+      color: #b1b1b1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ashborn</h1>
+  <p>The fire is still gathering strength...</p>
+  <div class="glitch" data-text="">Demo Release Date: {ERROR_NOTBINDED}</div>
+  <footer>Created by <strong>Glowborn</strong></footer>
+
+  <script>
+    // Generate ember particles
+    const emberCount = 50;
+    for (let i = 0; i < emberCount; i++) {
+      const ember = document.createElement('div');
+      ember.classList.add('ember');
+      ember.style.left = Math.random() * 100 + 'vw';
+      ember.style.animationDuration = 4 + Math.random() * 5 + 's';
+      ember.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(ember);
+    }
+  </script>
+</body>
+</html>
